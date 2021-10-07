@@ -95,8 +95,7 @@ export default {
 
   data () {
     return {
-      clipped: false,
-      rightDrawer: true,
+      rightDrawer: false,
     }
   },
 
