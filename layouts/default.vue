@@ -6,10 +6,10 @@
       flat
       color="transparent"
     >
-      <v-toolbar-title>Web clock</v-toolbar-title>
       <v-spacer />
       <v-btn
         icon
+        :ripple="false"
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
@@ -25,6 +25,11 @@
       fixed
     >
       <v-list>
+        <div class="d-flex align-center px-4 text-uppercase headline">
+          <v-img class="mr-2 flex-grow-0" width="30" src="/img/icons/android-chrome-192x192.png" alt="" />
+          Web clock
+        </div>
+
         <v-subheader>Settings</v-subheader>
         <v-list-item>
           <v-list-item-action>
@@ -50,13 +55,19 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <Footer />
   </v-app>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Footer from '@/components/Footer.vue';
 
 export default {
+  components: {
+    Footer,
+  },
+
   data () {
     return {
       clipped: false,
