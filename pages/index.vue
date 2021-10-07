@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     ...mapState({
-      withMilliseconds: (state) => state.settings.withMilliseconds,
+      withMilliseconds: state => state.settings.withMilliseconds,
     }),
     formattedDate() {
       return dayjs().format('dddd, DD MMMM YYYY')

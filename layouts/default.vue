@@ -1,9 +1,10 @@
 <template>
   <v-app dark>
     <v-app-bar
-      :clipped-left="clipped"
       fixed
       app
+      flat
+      color="transparent"
     >
       <v-toolbar-title>Web clock</v-toolbar-title>
       <v-spacer />
@@ -28,9 +29,10 @@
         <v-list-item>
           <v-list-item-action>
             <v-switch
-              v-model="darkThemeModel"
               inset
+              :input-value="darkThemeModel"
               :ripple="false"
+              @change="chagngeTheme"
             />
           </v-list-item-action>
           <v-list-item-title>Dark theme</v-list-item-title>
@@ -38,9 +40,10 @@
         <v-list-item>
           <v-list-item-action>
             <v-switch
-              v-model="withMillisecondsModel"
               inset
+              :input-value="withMillisecondsModel"
               :ripple="false"
+              @change="setWithMilliseconds"
             />
           </v-list-item-action>
           <v-list-item-title>Show ms</v-list-item-title>
@@ -51,14 +54,37 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   data () {
     return {
-      darkThemeModel: false,
-      withMillisecondsModel: false,
       clipped: false,
       rightDrawer: false,
     }
-  }
+  },
+
+  computed: {
+    ...mapState({
+      darkThemeModel: state => state.settings.isDarkTheme,
+      withMillisecondsModel: state => state.settings.withMilliseconds,
+    }),
+  },
+
+  mounted() {
+    this.chagngeTheme(JSON.parse(localStorage.getItem('isDarkTheme') || 'false'));
+    this.setWithMilliseconds(JSON.parse(localStorage.getItem('withMilliseconds') || 'false'));
+  },
+
+  methods: {
+    ...mapActions([
+      'setIsDarkTheme',
+      'setWithMilliseconds',
+    ]),
+    chagngeTheme(value) {
+      this.$vuetify.theme.isDark = value;
+      this.setIsDarkTheme(value);
+    },
+  },
 }
 </script>
