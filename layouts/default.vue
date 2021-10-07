@@ -76,9 +76,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      darkThemeModel: state => state.settings.isDarkTheme,
-      withMillisecondsModel: state => state.settings.withMilliseconds,
+    ...mapState('settings', {
+      darkThemeModel: state => state.isDarkTheme,
+      withMillisecondsModel: state => state.withMilliseconds,
     }),
   },
 
@@ -88,7 +88,7 @@ export default {
   },
 
   methods: {
-    ...mapActions([
+    ...mapActions('settings', [
       'setIsDarkTheme',
       'setWithMilliseconds',
     ]),

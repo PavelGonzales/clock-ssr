@@ -38,6 +38,7 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -66,6 +67,10 @@ export default {
         }
       }
     }
+  },
+
+  googleAnalytics: {
+    id: 'G-W7V2BHX7E3'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

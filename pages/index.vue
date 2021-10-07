@@ -45,8 +45,8 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      withMilliseconds: state => state.settings.withMilliseconds,
+    ...mapState('settings', {
+      withMilliseconds: state => state.withMilliseconds,
     }),
     formattedDate() {
       return dayjs().format('dddd, DD MMMM YYYY')
@@ -58,15 +58,15 @@ export default {
       return Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
     },
   },
-  created() {
+  mounted() {
     this.getServerData();
     this.intervalId = setInterval(this.getServerData, 60 * 1000);
-    // const dateNow = dayjs();
-    // this.$gtag.event('session info', {
-    //   date: dateNow.format('DD MM YYYY'),
-    //   time: dateNow.format('HH:mm:ss'),
-    //   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    // });
+    const dateNow = dayjs();
+    this.$ga.event('session info', {
+      date: dateNow.format('DD MM YYYY'),
+      time: dateNow.format('HH:mm:ss'),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    });
   },
   beforeDestroy() {
     if (this.intervalId !== -1) {
