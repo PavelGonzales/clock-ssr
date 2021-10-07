@@ -106,10 +106,12 @@ export default {
     }),
   },
 
-  mounted() {
-    this.chagngeTheme(JSON.parse(localStorage.getItem('isDarkTheme') || 'false'));
-    this.setWithMilliseconds(JSON.parse(localStorage.getItem('withMilliseconds') || 'false'));
-    this.setTheme(localStorage.getItem('theme') || 'default');
+  created() {
+    if (process.client) {
+      this.chagngeTheme(JSON.parse(localStorage.getItem('isDarkTheme') || 'false'));
+      this.setWithMilliseconds(JSON.parse(localStorage.getItem('withMilliseconds') || 'false'));
+      this.setTheme(localStorage.getItem('theme') || 'default');
+    }
   },
 
   methods: {

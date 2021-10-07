@@ -59,15 +59,17 @@ export default {
       return Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1];
     },
   },
-  mounted() {
-    this.getServerData();
-    this.intervalId = setInterval(this.getServerData, 60 * 1000);
-    const dateNow = dayjs();
-    this.$ga.event('session info', {
-      date: dateNow.format('DD MM YYYY'),
-      time: dateNow.format('HH:mm:ss'),
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    });
+  created() {
+    if (process.client) {
+      this.getServerData();
+      this.intervalId = setInterval(this.getServerData, 60 * 1000);
+      const dateNow = dayjs();
+      this.$ga.event('session info', {
+        date: dateNow.format('DD MM YYYY'),
+        time: dateNow.format('HH:mm:ss'),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      });
+    }
   },
   beforeDestroy() {
     if (this.intervalId !== -1) {
