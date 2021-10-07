@@ -23,6 +23,7 @@
       right
       temporary
       fixed
+      width="300"
     >
       <v-list>
         <div class="d-flex align-center px-4 text-uppercase headline">
@@ -34,7 +35,6 @@
         <v-list-item>
           <v-list-item-action>
             <v-switch
-              inset
               :input-value="darkThemeModel"
               :ripple="false"
               @change="chagngeTheme"
@@ -45,7 +45,6 @@
         <v-list-item>
           <v-list-item-action>
             <v-switch
-              inset
               :input-value="withMillisecondsModel"
               :ripple="false"
               @change="setWithMilliseconds"
@@ -53,6 +52,32 @@
           </v-list-item-action>
           <v-list-item-title>Show ms</v-list-item-title>
         </v-list-item>
+        <v-subheader>Themes</v-subheader>
+        <v-card
+          class="mx-4 mb-4"
+          hover
+          rounded="lg"
+          :ripple="false"
+          @click="setTheme('default')"
+        >
+          <v-img
+            src="/img/main_theme.png"
+            height="150px"
+          ></v-img>
+        </v-card>
+
+         <v-card
+          class="mx-4 mb-4"
+          hover
+          rounded="lg"
+          :ripple="false"
+          @click="setTheme('digital')"
+        >
+          <v-img
+            src="/img/digital_theme.png"
+            height="150px"
+          ></v-img>
+        </v-card>
       </v-list>
     </v-navigation-drawer>
     <Footer />
@@ -71,7 +96,7 @@ export default {
   data () {
     return {
       clipped: false,
-      rightDrawer: false,
+      rightDrawer: true,
     }
   },
 
@@ -85,12 +110,14 @@ export default {
   mounted() {
     this.chagngeTheme(JSON.parse(localStorage.getItem('isDarkTheme') || 'false'));
     this.setWithMilliseconds(JSON.parse(localStorage.getItem('withMilliseconds') || 'false'));
+    this.setTheme(localStorage.getItem('theme') || 'default');
   },
 
   methods: {
     ...mapActions('settings', [
       'setIsDarkTheme',
       'setWithMilliseconds',
+      'setTheme',
     ]),
     chagngeTheme(value) {
       this.$vuetify.theme.isDark = value;

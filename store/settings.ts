@@ -1,13 +1,20 @@
 import { ActionContext } from "vuex/types/index";
 
+enum Themes {
+  default = 'default',
+  digital = 'digital',
+}
+
 type SettingState = {
   isDarkTheme: boolean;
   withMilliseconds: boolean;
+  theme: Themes;
 }
 
 export const state = (): SettingState => ({
   isDarkTheme: false,
   withMilliseconds: false,
+  theme: Themes.default,
 });
 
 export const mutations = {
@@ -16,7 +23,10 @@ export const mutations = {
   },
   setWithMilliseconds(state: SettingState, value: boolean) {
     state.withMilliseconds = value;
-  }
+  },
+  setTheme(state: SettingState, value: Themes) {
+    state.theme = value;
+  },
 };
 
 export const actions = {
@@ -27,5 +37,9 @@ export const actions = {
   setWithMilliseconds({ commit }: ActionContext<SettingState, any>, value: boolean) {
     commit('setWithMilliseconds', value);
     localStorage.setItem('withMilliseconds', `${value}`);
-  }
+  },
+  setTheme({ commit }: ActionContext<SettingState, any>, value: Themes) {
+    commit('setTheme', value);
+    localStorage.setItem('theme', value);
+  },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div :class="['root', `theme--${theme}`]">
     <h1 class="location-info">
       Time in {{ city }} now:
     </h1>
@@ -47,6 +47,7 @@ export default {
   computed: {
     ...mapState('settings', {
       withMilliseconds: state => state.withMilliseconds,
+      theme: state => state.theme,
     }),
     formattedDate() {
       return dayjs().format('dddd, DD MMMM YYYY')
@@ -101,7 +102,7 @@ export default {
 
 <style scoped>
 .root {
-  padding: 82px 0;
+  padding-bottom: 56px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -109,6 +110,10 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+}
+
+.root.theme--digital {
+  font-family: 'digital_dream', 'Roboto', sans-serif;
 }
 
 .location-info {
@@ -126,8 +131,17 @@ export default {
   text-align: center;
 }
 
+.theme--digital .time {
+  font-size: 10.3vw;
+  line-height: 1.2em;
+}
+
 .time--large {
   font-size: 23.5vw;
+}
+
+.theme--digital .time--large {
+  font-size: 15.6vw;
 }
 
 .date-info {
