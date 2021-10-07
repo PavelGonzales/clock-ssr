@@ -19,18 +19,31 @@
     </v-main>
     <v-navigation-drawer
       v-model="rightDrawer"
-      :right="right"
+      right
       temporary
       fixed
     >
       <v-list>
-        <v-list-item @click.native="right = !right">
+        <v-subheader>Settings</v-subheader>
+        <v-list-item>
           <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
+            <v-switch
+              v-model="darkThemeModel"
+              inset
+              :ripple="false"
+            />
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title>Dark theme</v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-action>
+            <v-switch
+              v-model="withMillisecondsModel"
+              inset
+              :ripple="false"
+            />
+          </v-list-item-action>
+          <v-list-item-title>Show ms</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -41,23 +54,10 @@
 export default {
   data () {
     return {
+      darkThemeModel: false,
+      withMillisecondsModel: false,
       clipped: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
     }
   }
 }

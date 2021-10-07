@@ -77,7 +77,7 @@ export default {
     async getServerData() {
       try {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const { data: serverData } = await axios.get<ServerData>(`https://worldtimeapi.org/api/timezone/${timezone}`);
+        const { data: serverData } = await axios.get(`https://worldtimeapi.org/api/timezone/${timezone}`);
 
         this.serverData = serverData;
         this.setOffset();
