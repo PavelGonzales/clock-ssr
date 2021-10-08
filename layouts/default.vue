@@ -107,11 +107,9 @@ export default {
   },
 
   created() {
-    if (process.client) {
-      this.chagngeTheme(JSON.parse(localStorage.getItem('isDarkTheme') || 'false'));
-      this.setWithMilliseconds(JSON.parse(localStorage.getItem('withMilliseconds') || 'false'));
-      this.setTheme(localStorage.getItem('theme') || 'default');
-    }
+    this.chagngeTheme(this.$cookies.get('isDarkTheme'));
+    this.setWithMilliseconds(this.$cookies.get('withMilliseconds'));
+    this.setTheme(this.$cookies.get('theme') || 'default');
   },
 
   methods: {

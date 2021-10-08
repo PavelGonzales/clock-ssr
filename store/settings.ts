@@ -32,14 +32,17 @@ export const mutations = {
 export const actions = {
   setIsDarkTheme({ commit }: ActionContext<SettingState, any>, value: boolean) {
     commit('setIsDarkTheme', value);
-    localStorage.setItem('isDarkTheme', `${value}`);
+    // TODO Fix it!!!
+    (this as any).$cookies.set('isDarkTheme', value);
   },
   setWithMilliseconds({ commit }: ActionContext<SettingState, any>, value: boolean) {
     commit('setWithMilliseconds', value);
-    localStorage.setItem('withMilliseconds', `${value}`);
+    // TODO Fix it!!!
+    (this as any).$cookies.set('withMilliseconds', value);
   },
   setTheme({ commit }: ActionContext<SettingState, any>, value: Themes) {
     commit('setTheme', value);
-    localStorage.setItem('theme', value);
+    // TODO Fix it!!!
+    (this as any).$cookies.set('theme', value);
   },
 };
