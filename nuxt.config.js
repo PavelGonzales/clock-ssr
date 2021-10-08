@@ -23,13 +23,13 @@ export default {
       { property: 'og:title', content: 'Web Clock' },
       { property: 'og:description', content: 'Clock Online - exact time with night mode' },
       { property: 'og:image', content: 'img/og_facebook.png' },
-      { property: 'og:url', content: 'www.webclock.online' },
-      { property: 'og:site_name', content: 'www.webclock.online' },
+      { property: 'og:url', content: 'webclock.online' },
+      { property: 'og:site_name', content: 'webclock.online' },
 
       { name: 'twitter:title', content: 'Web Clock' },
       { name: 'twitter:description', content: 'Clock Online - exact time with night mode' },
       { name: 'twitter:image', content: 'img/og_twitter.png' },
-      { name: 'twitter:site', content: 'www.webclock.online' },
+      { name: 'twitter:site', content: 'webclock.online' },
       { name: 'twitter:creator', content: '@gonzales_pavel' },
     ],
     link: [
@@ -39,7 +39,7 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'img/icons/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: 'img/icons/safari-pinned-tab.svg', color: '#5bbad5' },
-      { rel: 'canonical', href: 'www.webclock.online' },
+      { rel: 'canonical', href: 'webclock.online' },
     ]
   },
 
