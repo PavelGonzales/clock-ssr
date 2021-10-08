@@ -48,6 +48,7 @@ export default {
   ],
 
   plugins: [
+    {src: '~/plugins/vue-gtag',}
   ],
 
   components: true,
@@ -56,7 +57,6 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/vuetify',
-    '@nuxtjs/google-analytics',
   ],
 
   modules: [
@@ -82,10 +82,6 @@ export default {
         }
       }
     }
-  },
-
-  googleAnalytics: {
-    id: 'G-8QFKCY9T6V'
   },
 
   build: {

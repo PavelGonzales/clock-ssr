@@ -64,7 +64,7 @@ export default {
       this.getServerData();
       this.intervalId = setInterval(this.getServerData, 60 * 1000);
       const dateNow = dayjs();
-      this.$ga.event('session info', {
+      this.$gtag.event('session info', {
         date: dateNow.format('DD MM YYYY'),
         time: dateNow.format('HH:mm:ss'),
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,

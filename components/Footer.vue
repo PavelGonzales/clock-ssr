@@ -10,7 +10,7 @@ export default {
 
   methods: {
     onLinkClick() {
-      this.$ga.event('click', { label: 'pavelgonzales.com' });
+      this.$gtag.event('click', { label: 'pavelgonzales.com' });
     },
   },
 };
