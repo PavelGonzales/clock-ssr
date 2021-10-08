@@ -108,8 +108,8 @@ export default {
   },
 
   created() {
-    this.chagngeTheme(this.$cookies.get('isDarkTheme'));
-    this.setWithMilliseconds(this.$cookies.get('withMilliseconds'));
+    this.chagngeTheme(this.$cookies.get('isDarkTheme') || false);
+    this.setWithMilliseconds(this.$cookies.get('withMilliseconds') || false);
     this.setTheme(this.$cookies.get('theme') || 'default');
   },
 
