@@ -11,6 +11,17 @@
       <v-btn
         icon
         :ripple="false"
+        @click.stop="toggleFullscreen"
+      >
+        <v-icon>
+          <template v-if="isFullscreenMode">mdi-fullscreen-exit</template>
+          <template v-else>mdi-fullscreen</template>
+        </v-icon>
+      </v-btn>
+
+      <v-btn
+        icon
+        :ripple="false"
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
@@ -97,6 +108,7 @@ export default {
   data () {
     return {
       rightDrawer: false,
+      isFullscreenMode: false,
     }
   },
 
@@ -122,6 +134,14 @@ export default {
     chagngeTheme(value) {
       this.$vuetify.theme.isDark = value;
       this.setIsDarkTheme(value);
+    },
+    toggleFullscreen() {
+      if (this.isFullscreenMode) {
+        document.exitFullscreen();
+      } else {
+        document.documentElement.requestFullscreen();
+      }
+      this.isFullscreenMode = !this.isFullscreenMode;
     },
   },
 }
