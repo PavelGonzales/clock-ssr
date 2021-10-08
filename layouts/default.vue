@@ -5,6 +5,7 @@
       app
       flat
       color="transparent"
+      height="64"
     >
       <v-spacer />
       <v-btn
