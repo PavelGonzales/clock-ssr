@@ -5,7 +5,7 @@
 ## [Demo](https://webclock.online)
 ## Roadmap
 
-- donate
+- ✅ donate
 - ✅ fullscreen
 - compare timezones
 - timer
