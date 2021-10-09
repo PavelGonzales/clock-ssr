@@ -32,10 +32,15 @@ export default {
   },
   methods: {
     updateFormattedTime() {
+      const dateNow = dayjs();
+      if (process.client) {
+        document.title = ` Web Clock ${dateNow.format('HH:mm:ss')}`;
+      }
+
       if (this.withMilliseconds) {
-        this.formattedTime = dayjs().format('HH:mm:ss:SSS');
+        this.formattedTime = dateNow.format('HH:mm:ss:SSS');
       } else {
-        this.formattedTime = dayjs().format('HH:mm:ss');
+        this.formattedTime = dateNow.format('HH:mm:ss');
       }
     },
   },
