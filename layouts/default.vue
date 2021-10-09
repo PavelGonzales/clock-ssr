@@ -43,6 +43,25 @@
           Web clock
         </div>
 
+        <div class="px-4 mt-3">
+          <v-btn
+            href="https://capu.st/webclock.online"
+            target="_blank"
+            block
+            large
+            dark
+            :ripple="false"
+            color="#FF2800"
+          >
+            <v-icon
+              left
+            >
+              mdi-heart
+            </v-icon>
+            Donate
+          </v-btn>
+        </div>
+
         <v-subheader>Settings</v-subheader>
         <v-list-item>
           <v-list-item-action>
