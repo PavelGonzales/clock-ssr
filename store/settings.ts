@@ -1,20 +1,15 @@
 import { ActionContext } from "vuex/types/index";
 
-enum Themes {
-  default = 'default',
-  digital = 'digital',
-}
-
 type SettingState = {
   isDarkTheme: boolean;
   withMilliseconds: boolean;
-  theme: Themes;
+  isDigitalTheme: boolean;
 }
 
 export const state = (): SettingState => ({
   isDarkTheme: false,
   withMilliseconds: false,
-  theme: Themes.default,
+  isDigitalTheme: false,
 });
 
 export const mutations = {
@@ -24,8 +19,8 @@ export const mutations = {
   setWithMilliseconds(state: SettingState, value: boolean) {
     state.withMilliseconds = value;
   },
-  setTheme(state: SettingState, value: Themes) {
-    state.theme = value;
+  setIsDigitalThemeTheme(state: SettingState, value: boolean) {
+    state.isDigitalTheme = value;
   },
 };
 
@@ -40,9 +35,9 @@ export const actions = {
     // TODO Fix it!!!
     (this as any).$cookies.set('withMilliseconds', value);
   },
-  setTheme({ commit }: ActionContext<SettingState, any>, value: Themes) {
-    commit('setTheme', value);
+  setIsDigitalTheme({ commit }: ActionContext<SettingState, any>, value: boolean) {
+    commit('setIsDigitalThemeTheme', value);
     // TODO Fix it!!!
-    (this as any).$cookies.set('theme', value);
+    (this as any).$cookies.set('isDigitalTheme', value);
   },
 };

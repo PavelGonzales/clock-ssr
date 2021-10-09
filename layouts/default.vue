@@ -37,32 +37,32 @@
       fixed
       width="300"
     >
-      <v-list>
-        <div class="d-flex align-center px-4 text-uppercase headline">
-          <v-img class="mr-2 flex-grow-0" width="30" src="/img/icons/android-chrome-192x192.png" alt="" />
-          Web clock
-        </div>
+      <div class="d-flex align-center px-4 pt-3 text-uppercase headline">
+        <v-img class="mr-2 flex-grow-0" width="30" src="/img/icons/android-chrome-192x192.png" alt="" />
+        Web clock
+      </div>
 
-        <div class="px-4 mt-3">
-          <v-btn
-            href="https://capu.st/webclock.online"
-            target="_blank"
-            block
-            large
-            dark
-            :ripple="false"
-            color="#FF2800"
+      <div class="px-4 mt-3">
+        <v-btn
+          href="https://capu.st/webclock.online"
+          target="_blank"
+          block
+          large
+          dark
+          :ripple="false"
+          color="#FF2800"
+        >
+          <v-icon
+            left
           >
-            <v-icon
-              left
-            >
-              mdi-heart
-            </v-icon>
-            Donate
-          </v-btn>
-        </div>
+            mdi-heart
+          </v-icon>
+          Donate
+        </v-btn>
+      </div>
 
-        <v-subheader>Settings</v-subheader>
+      <v-subheader class="font-weight-medium">Settings</v-subheader>
+      <v-list class="font-weight-medium">
         <v-list-item>
           <v-list-item-action>
             <v-switch
@@ -83,33 +83,52 @@
           </v-list-item-action>
           <v-list-item-title>Show ms</v-list-item-title>
         </v-list-item>
-        <v-subheader>Themes</v-subheader>
-        <v-card
-          class="mx-4 mb-4"
-          hover
-          rounded="lg"
-          :ripple="false"
-          @click="setTheme('default')"
-        >
-          <v-img
-            src="/img/main_theme.png"
-            height="150px"
-          ></v-img>
-        </v-card>
-
-         <v-card
-          class="mx-4 mb-4"
-          hover
-          rounded="lg"
-          :ripple="false"
-          @click="setTheme('digital')"
-        >
-          <v-img
-            src="/img/digital_theme.png"
-            height="150px"
-          ></v-img>
-        </v-card>
+        <v-list-item>
+          <v-list-item-action>
+            <v-switch
+              :input-value="digitalThemeModel"
+              :ripple="false"
+              @change="setIsDigitalTheme"
+            />
+          </v-list-item-action>
+          <v-list-item-title>Digital theme</v-list-item-title>
+        </v-list-item>
       </v-list>
+
+      <v-subheader class="font-weight-medium">Themes</v-subheader>
+
+      <v-expansion-panels
+        accordion
+        flat
+        class="font-weight-medium"
+      >
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            Text color
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-color-picker
+              dot-size="24"
+              mode="hexa"
+              show-swatches
+              swatches-max-height="150"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            Background color
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-color-picker
+              dot-size="24"
+              mode="hexa"
+              show-swatches
+              swatches-max-height="150"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-navigation-drawer>
     <Footer />
   </v-app>
@@ -135,20 +154,21 @@ export default {
     ...mapState('settings', {
       darkThemeModel: state => state.isDarkTheme,
       withMillisecondsModel: state => state.withMilliseconds,
+      digitalThemeModel: state => state.isDigitalTheme,
     }),
   },
 
   created() {
     this.chagngeTheme(this.$cookies.get('isDarkTheme') || false);
     this.setWithMilliseconds(this.$cookies.get('withMilliseconds') || false);
-    this.setTheme(this.$cookies.get('theme') || 'default');
+    this.setIsDigitalTheme(this.$cookies.get('isDigitalTheme') || false);
   },
 
   methods: {
     ...mapActions('settings', [
       'setIsDarkTheme',
       'setWithMilliseconds',
-      'setTheme',
+      'setIsDigitalTheme',
     ]),
     chagngeTheme(value) {
       this.$vuetify.theme.isDark = value;
@@ -165,3 +185,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.v-expansion-panel--active > .v-expansion-panel-header {
+  min-height: 48px;
+}
+</style>

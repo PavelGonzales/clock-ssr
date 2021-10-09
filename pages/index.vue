@@ -1,5 +1,5 @@
 <template>
-  <div :class="['root', `theme--${theme}`]">
+  <div :class="['root', { 'theme--digital': isDigitalTheme }]">
     <h1 class="location-info">
       Time in {{ city }} now:
     </h1>
@@ -47,7 +47,7 @@ export default {
   computed: {
     ...mapState('settings', {
       withMilliseconds: state => state.withMilliseconds,
-      theme: state => state.theme,
+      isDigitalTheme: state => state.isDigitalTheme,
     }),
     formattedDate() {
       return dayjs().format('dddd, DD MMMM YYYY')
