@@ -12,4 +12,4 @@
 - timer to date with notification
 - set custom theme color
 - sharing
-- time in title
+- ✅ time in title
