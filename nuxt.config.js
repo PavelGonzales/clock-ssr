@@ -2,7 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   head: {
-    titleTemplate: '%s - clock-nuxt',
+    titleTemplate: 'Web Clock',
     title: 'Web Clock',
     htmlAttrs: {
       lang: 'en'
