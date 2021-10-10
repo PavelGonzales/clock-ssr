@@ -10,6 +10,6 @@
 - compare timezones
 - timer
 - timer to date with notification
-- set custom theme color
+- ✅ set custom theme color
 - sharing
 - ✅ time in title
