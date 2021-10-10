@@ -4,12 +4,16 @@ type SettingState = {
   isDarkTheme: boolean;
   withMilliseconds: boolean;
   isDigitalTheme: boolean;
+  textColor: string;
+  backgroundColor: string;
 }
 
 export const state = (): SettingState => ({
   isDarkTheme: false,
   withMilliseconds: false,
   isDigitalTheme: false,
+  textColor: '',
+  backgroundColor: '',
 });
 
 export const mutations = {
@@ -21,6 +25,12 @@ export const mutations = {
   },
   setIsDigitalThemeTheme(state: SettingState, value: boolean) {
     state.isDigitalTheme = value;
+  },
+  setTextColor(state: SettingState, value: string) {
+    state.textColor = value;
+  },
+  setBackgroundColor(state: SettingState, value: string) {
+    state.backgroundColor = value;
   },
 };
 
@@ -39,5 +49,19 @@ export const actions = {
     commit('setIsDigitalThemeTheme', value);
     // TODO Fix it!!!
     (this as any).$cookies.set('isDigitalTheme', value);
+  },
+  setTextColor({ commit }: ActionContext<SettingState, any>, value: string) {
+    commit('setTextColor', value);
+  },
+  setBackgroundColor({ commit }: ActionContext<SettingState, any>, value: string) {
+    commit('setBackgroundColor', value);
+  },
+  setCookieTextColor(_: ActionContext<SettingState, any>, value: string) {
+    // TODO Fix it!!!
+    (this as any).$cookies.set('textColor', value);
+  },
+  setCookieBackgroundColor(_: ActionContext<SettingState, any>, value: string) {
+    // TODO Fix it!!!
+    (this as any).$cookies.set('backgroundColor', value);
   },
 };
