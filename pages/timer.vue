@@ -3,7 +3,6 @@
     <TimerInput
       ref="timerInput"
       class="timer-input"
-      :start-time="dayjs('2037-12-30T10:00:00').valueOf()"
     />
     <div class="mt-4">
       <v-btn
@@ -78,14 +77,14 @@ export default {
 }
 
 .timer-input {
-  font-size: 15.7vw;
+  font-size: 23.5vw;
   font-weight: 900;
   line-height: 1em;
   text-align: center;
 }
 
 .theme--digital .timer-input {
-  font-size: 10.3vw;
+  font-size: 15.6vw;
   line-height: 1.2em;
 }
 </style>
