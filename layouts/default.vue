@@ -7,6 +7,10 @@
       :color="backgroundColor || 'transparent'"
       height="64"
     >
+      <div :style="{ width: '96px' }" />
+      <v-spacer />
+      <v-btn text to="/">Clock</v-btn>
+      <v-btn text to="/timer">Timer</v-btn>
       <v-spacer />
       <v-btn
         icon
