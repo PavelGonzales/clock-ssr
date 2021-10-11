@@ -10,6 +10,7 @@
       <v-spacer />
       <v-btn
         icon
+        aria-label="toggle fullscreen"
         :ripple="false"
         :color="textColor"
         @click.stop="toggleFullscreen"
@@ -22,6 +23,7 @@
 
       <v-btn
         icon
+        aria-label="menu"
         :ripple="false"
         :color="textColor"
         @click.stop="rightDrawer = !rightDrawer"

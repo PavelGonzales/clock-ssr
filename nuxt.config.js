@@ -23,13 +23,13 @@ export default {
       { property: 'og:title', content: 'Web Clock' },
       { property: 'og:description', content: 'Clock Online - exact time with night mode, custom themes and digital view. More functionality awaits you in the future. Project without ads.' },
       { property: 'og:image', content: 'img/og_facebook.png' },
-      { property: 'og:url', content: 'webclock.online' },
-      { property: 'og:site_name', content: 'webclock.online' },
+      { property: 'og:url', content: 'https://webclock.online' },
+      { property: 'og:site_name', content: 'https://webclock.online' },
 
       { name: 'twitter:title', content: 'Web Clock' },
       { name: 'twitter:description', content: 'Clock Online - exact time with night mode, custom themes and digital view. More functionality awaits you in the future. Project without ads.' },
       { name: 'twitter:image', content: 'img/og_twitter.png' },
-      { name: 'twitter:site', content: 'webclock.online' },
+      { name: 'twitter:site', content: 'https://webclock.online' },
       { name: 'twitter:creator', content: '@gonzales_pavel' },
     ],
     link: [
@@ -39,7 +39,7 @@ export default {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'img/icons/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: 'img/icons/safari-pinned-tab.svg', color: '#5bbad5' },
-      { rel: 'canonical', href: 'webclock.online' },
+      { rel: 'canonical', href: 'https://webclock.online' },
     ]
   },
 
