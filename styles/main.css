@@ -1,5 +1,6 @@
 @import '~/assets/fonts/digital-dream/stylesheet.css';
 
-.v-application {
+.v-application,
+.v-application .v-application--wrap .headline {
   font-family: 'Noto Sans Mono', monospace !important;
 }
