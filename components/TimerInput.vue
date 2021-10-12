@@ -1,17 +1,16 @@
 <template>
   <div class="time">
-    <div class="input-wrap" :data-mask="dataMask">
+    <div v-show="isInputActive" class="input-wrap" :data-mask="dataMask">
       <input
-        v-show="isInputActive"
         ref="input"
-        v-model="formattedTime"
+        v-model="formattedTimeModel"
         v-mask="'##:##:##'"
         class="input"
         type="text"
         @blur="onInputBlur"
       >
     </div>
-    <div v-show="!isInputActive" @click="onTimeClick">
+    <div v-show="!isInputActive" class="formatted-time" @click="onTimeClick">
       {{ formattedTime }}
     </div>
   </div>
@@ -30,13 +29,14 @@ export default {
     return {
       intervalId: null,
       formattedTime: '',
+      formattedTimeModel: '',
       localStartTime: dayjs('1970-01-01T00:00:06').valueOf(),
       isInputActive: false,
     }
   },
   computed: {
     dataMask() {
-      return 'HH:mm:ss'.slice(this.formattedTime.length);
+      return 'HH:mm:ss'.slice(this.formattedTimeModel.length);
     },
     canDecrementTime() {
       return (this.localStartTime + 10800000) > 0;
@@ -79,7 +79,11 @@ export default {
     },
     onInputBlur() {
       this.isInputActive = false;
-      this.localStartTime = dayjs(`2037-12-30T${this.formattedTime}`).valueOf()
+      if (this.formattedTimeModel.length === 8) {
+        this.localStartTime = dayjs(`2037-12-30T${this.formattedTimeModel}`).valueOf();
+        this.formattedTime = dayjs(this.localStartTime).format('HH:mm:ss');
+      }
+      this.formattedTimeModel = '';
     },
   },
 };
@@ -92,7 +96,7 @@ export default {
   border: none;
   outline: none;
   box-sizing: border-box;
-  padding-left: 1.5px;
+  padding-left: 1px;
 }
 
 .input-wrap {
@@ -104,10 +108,20 @@ export default {
   display: block;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1px;
   width: 100%;
   height: 100%;
   text-align: right;
   opacity: 0.4;
+  pointer-events: none;
+}
+
+.formatted-time {
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.formatted-time:hover {
+  opacity: 0.9;
 }
 </style>

@@ -6,20 +6,21 @@
     />
     <div class="mt-4">
       <v-btn
-        x-large
-        fab
-        color="green darken-3 mx-1"
-        @click="start"
+        large
+        :color="`${isTimerStarted ? 'red' : 'green'} darken-3`"
+        :ripple="false"
+        width="105"
+        @click="toggleTimer"
       >
-        START
-      </v-btn>
-      <v-btn
-        x-large
-        fab
-        color="red darken-3 mx-1"
-        @click="stop"
-      >
-        STOP
+        <template v-if="!isTimerStarted">
+          <v-icon left>mdi-motion-play-outline</v-icon>
+          play
+        </template>
+        <template v-else>
+          <v-icon left>mdi-motion-pause-outline</v-icon>
+          pause
+        </template>
+
       </v-btn>
     </div>
   </div>
@@ -35,14 +36,12 @@ dayjs.extend(weekOfYear);
 
 export default {
   name: 'Timer',
-
   components: {
     TimerInput,
   },
- 
   data() {
     return {
-
+      isTimerStarted: false,
     };
   },
   computed: {
@@ -50,15 +49,26 @@ export default {
       isDigitalTheme: state => state.isDigitalTheme,
     }),
   },
-  
+  mounted() {
+    document.title = `Web Clock`;
+    this.$watch(() => {
+      this.isTimerStarted = this.$refs.timerInput.intervalId;
+      return this.$refs.timerInput.intervalId;
+    }, (value) => {
+      this.isTimerStarted = value;
+    });
+  },
   methods: {
     dayjs,
-    start() {
-      this.$refs.timerInput.start();
-    },
-    stop() {
-      this.$refs.timerInput.stop();
-    },
+    toggleTimer() {
+      if (this.isTimerStarted) {
+        this.$refs.timerInput.stop();
+      } else if (this.$refs.timerInput.canDecrementTime) {
+        this.$refs.timerInput.start();
+      } else {
+        this.$refs.timerInput.onTimeClick();
+      }
+    }
   },
 };
 </script>
