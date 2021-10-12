@@ -122,13 +122,13 @@ export default {
   font-size: 3vw;
   line-height: 1em;
   padding-left: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0;
 }
 
 .time {
-  font-size: 15.7vw;
-  font-weight: 900;
+  font-size: 13.7vw;
+  font-weight: 800;
   line-height: 1em;
   text-align: center;
 }
@@ -139,7 +139,7 @@ export default {
 }
 
 .time--large {
-  font-size: 23.5vw;
+  font-size: 20.5vw;
 }
 
 .theme--digital .time--large {
@@ -151,12 +151,12 @@ export default {
   line-height: 1em;
   text-align: right;
   padding-right: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .offset-info {
   font-size: 3vw;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1em;
   text-align: center;
   margin-top: 2em;

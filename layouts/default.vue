@@ -7,6 +7,10 @@
       :color="backgroundColor || 'transparent'"
       height="64"
     >
+      <div :style="{ width: '96px' }" />
+      <v-spacer />
+      <v-btn text to="/" :ripple="false">Clock</v-btn>
+      <v-btn text to="/timer" :ripple="false">Timer</v-btn>
       <v-spacer />
       <v-btn
         icon
@@ -80,21 +84,18 @@ export default {
     Footer,
     Settings,
   },
-
   data () {
     return {
       rightDrawer: false,
       isFullscreenMode: false,
     }
   },
-
   computed: {
     ...mapState('settings', {
       textColor: state => state.textColor,
       backgroundColor: state => state.backgroundColor,
     }),
   },
-
   created() {
     this.chagngeTheme(this.$cookies.get('isDarkTheme') || false);
     this.setWithMilliseconds(this.$cookies.get('withMilliseconds') || false);
@@ -102,7 +103,6 @@ export default {
     this.setTextColor(this.$cookies.get('textColor') || '');
     this.setBackgroundColor(this.$cookies.get('backgroundColor') || '');
   },
-
   methods: {
     ...mapActions('settings', [
       'setIsDarkTheme',

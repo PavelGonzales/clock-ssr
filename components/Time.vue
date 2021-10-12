@@ -34,7 +34,7 @@ export default {
     updateFormattedTime() {
       const dateNow = dayjs();
       if (process.client) {
-        document.title = ` Web Clock ${dateNow.format('HH:mm:ss')}`;
+        document.title = `${dateNow.format('HH:mm:ss')} – Web Clock`;
       }
 
       if (this.withMilliseconds) {

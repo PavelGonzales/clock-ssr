@@ -40,6 +40,9 @@ export default {
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: 'img/icons/safari-pinned-tab.svg', color: '#5bbad5' },
       { rel: 'canonical', href: 'https://webclock.online' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;500;600;700;800;900&display=swap' },
     ]
   },
 
