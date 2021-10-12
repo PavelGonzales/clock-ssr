@@ -8,7 +8,7 @@
 - ✅ donate
 - ✅ fullscreen
 - compare timezones
-- timer
+- ✅ timer
 - timer to date with notification
 - ✅ set custom theme color
 - sharing

@@ -91,7 +91,7 @@ export default {
 
 .timer-input {
   font-size: 20.5vw;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.1em;
   text-align: center;
 }
