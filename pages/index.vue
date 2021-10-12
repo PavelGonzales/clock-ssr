@@ -122,7 +122,7 @@ export default {
   font-size: 3vw;
   line-height: 1em;
   padding-left: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -151,12 +151,12 @@ export default {
   line-height: 1em;
   text-align: right;
   padding-right: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .offset-info {
   font-size: 3vw;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1em;
   text-align: center;
   margin-top: 2em;
