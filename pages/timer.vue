@@ -3,11 +3,13 @@
     <TimerInput
       ref="timerInput"
       class="timer-input"
+      :is-digital-theme="isDigitalTheme"
     />
     <div class="mt-4">
       <v-btn
         large
-        :color="`${isTimerStarted ? 'red' : 'green'} darken-3`"
+        dark
+        :color="`${isTimerStarted ? 'red' : 'green'} ${isDarkTheme ? 'darken-3' : 'darken-1'}`"
         :ripple="false"
         width="105"
         @click="toggleTimer"
@@ -47,6 +49,7 @@ export default {
   computed: {
     ...mapState('settings', {
       isDigitalTheme: state => state.isDigitalTheme,
+      isDarkTheme: state => state.isDarkTheme
     }),
   },
   mounted() {
@@ -87,9 +90,9 @@ export default {
 }
 
 .timer-input {
-  font-size: 23.5vw;
+  font-size: 20.5vw;
   font-weight: 900;
-  line-height: 1em;
+  line-height: 1.1em;
   text-align: center;
 }
 

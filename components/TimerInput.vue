@@ -1,5 +1,5 @@
 <template>
-  <div class="time">
+  <div :class="['time', { 'time--digital': isDigitalTheme }]">
     <div v-show="isInputActive" class="input-wrap" :data-mask="dataMask">
       <input
         ref="input"
@@ -24,6 +24,12 @@ export default {
   name: 'TimerInput',
   directives: {
     mask
+  },
+  props: {
+    isDigitalTheme: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -108,12 +114,16 @@ export default {
   display: block;
   position: absolute;
   top: 0;
-  left: -1px;
+  left: -0.07em;
   width: 100%;
   height: 100%;
   text-align: right;
   opacity: 0.4;
   pointer-events: none;
+}
+
+.time--digital .input-wrap::after {
+  left: -1px;
 }
 
 .formatted-time {

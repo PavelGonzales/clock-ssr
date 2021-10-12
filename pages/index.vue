@@ -127,8 +127,8 @@ export default {
 }
 
 .time {
-  font-size: 15.7vw;
-  font-weight: 900;
+  font-size: 13.7vw;
+  font-weight: 800;
   line-height: 1em;
   text-align: center;
 }
@@ -139,7 +139,7 @@ export default {
 }
 
 .time--large {
-  font-size: 23.5vw;
+  font-size: 20.5vw;
 }
 
 .theme--digital .time--large {
