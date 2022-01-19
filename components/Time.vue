@@ -7,9 +7,15 @@
 <script>
 import dayjs from 'dayjs';
 
+const UPADTE_INTERVAL_MS = 16;
+
 export default {
   name: 'Time',
   props: {
+    utcUnixTime: {
+      type: Number,
+      required: true,
+    },
     withMilliseconds: {
       type: Boolean,
       default: true,
@@ -19,11 +25,22 @@ export default {
     return {
       intervalId: -1,
       formattedTime: '',
+      localUtcUnixTime: 0,
+    }
+  },
+  computed: {
+    time() {
+      return dayjs(this.localUtcUnixTime).utc();
+    },
+  },
+  watch: {
+    utcUnixTime() {
+      this.localUtcUnixTime = this.utcUnixTime;
     }
   },
   created() {
     this.updateFormattedTime();
-    this.intervalId = setInterval(this.updateFormattedTime, 16);
+    this.intervalId = setInterval(this.updateFormattedTime, UPADTE_INTERVAL_MS);
   },
   beforeDestroy() {
     if (this.intervalId !== -1) {
@@ -32,16 +49,21 @@ export default {
   },
   methods: {
     updateFormattedTime() {
-      const dateNow = dayjs();
+      if (!this.time) {
+        return;
+      }
+
       if (process.client) {
-        document.title = `${dateNow.format('HH:mm:ss')} – Web Clock`;
+        document.title = `${this.time.format('HH:mm:ss')} – Web Clock`;
       }
 
       if (this.withMilliseconds) {
-        this.formattedTime = dateNow.format('HH:mm:ss:SSS');
+        this.formattedTime = this.time.format('HH:mm:ss:SSS');
       } else {
-        this.formattedTime = dateNow.format('HH:mm:ss');
+        this.formattedTime = this.time.format('HH:mm:ss');
       }
+
+      this.localUtcUnixTime = this.localUtcUnixTime + UPADTE_INTERVAL_MS;
     },
   },
 };

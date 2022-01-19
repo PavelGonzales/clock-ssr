@@ -1,6 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  server: {
+    port: 8000 // default: 3000
+  },
   head: {
     titleTemplate: 'Web Clock',
     title: 'Web Clock',

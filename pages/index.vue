@@ -1,18 +1,11 @@
 <template>
   <div :class="['root', { 'theme--digital': isDigitalTheme }]">
     <h1 class="location-info">
-      Time in {{ city }} now:
+      UTC time now:
     </h1>
-    <Time :class="['time', {'time--large': !withMilliseconds}]" :with-milliseconds="withMilliseconds" />
+    <Time :utc-unix-time="utcUnixTime" :class="['time', {'time--large': !withMilliseconds}]" :with-milliseconds="withMilliseconds" />
     <div class="date-info">
       {{ formattedDate }}, week {{ week }}
-    </div>
-    <div class="offset-info">
-      <template v-if="serverData.datetime">
-        <!-- <span class="offset-info__gap">Your clock is 0.3 seconds behind.</span> -->
-        Accuracy of synchronisation was ±{{ offset }}.
-      </template>
-      <template v-else>Synchronizing...</template>
     </div>
   </div>
 </template>
@@ -21,9 +14,10 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
+import utc from 'dayjs/plugin/utc';
 import { mapState } from 'vuex';
 import Time from '@/components/Time.vue';
-
+dayjs.extend(utc);
 dayjs.extend(weekOfYear);
 
 export default {
@@ -40,8 +34,8 @@ export default {
   data() {
     return {
       serverData: {},
-      offset: '',
       intervalId: -1,
+      utcUnixTime: +new Date(),
     };
   },
   computed: {
@@ -79,23 +73,13 @@ export default {
   methods: {
     async getServerData() {
       try {
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const timezone = 'Europe/London';
         const { data: serverData } = await axios.get(`https://worldtimeapi.org/api/timezone/${timezone}`);
 
         this.serverData = serverData;
-        this.setOffset();
+        this.utcUnixTime = +new Date(this.serverData.utc_datetime);
       } catch (err) {
         console.log('Failed get serverData', err);
-      }
-    },
-    setOffset() {
-      const offset = Date.now() - +new Date(this.serverData.datetime || '');
-      const ms = dayjs(offset).format('SSS');
-      const sec = dayjs(offset).format('ss');
-      if (offset >= 1000) {
-        this.offset = `${sec} sec ${ms} ms`;
-      } else {
-        this.offset = `${ms} ms`;
       }
     },
   },
@@ -151,21 +135,6 @@ export default {
   line-height: 1em;
   text-align: right;
   padding-right: 16px;
-  font-weight: 600;
-}
-
-.offset-info {
-  font-size: 3vw;
-  font-weight: 300;
-  line-height: 1em;
-  text-align: center;
-  margin-top: 2em;
-  display: flex;
-  flex-direction: column;
-}
-
-.offset-info__gap {
-  font-size: 3.65vw;
   font-weight: 600;
 }
 </style>
