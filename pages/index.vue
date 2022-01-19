@@ -56,7 +56,7 @@ export default {
   created() {
     if (process.client) {
       this.getServerData();
-      this.intervalId = setInterval(this.getServerData, 60 * 1000);
+      this.intervalId = setInterval(this.getServerData, 5 * 1000);
       const dateNow = dayjs();
       this.$gtag.event('session info', {
         date: dateNow.format('DD MM YYYY'),
